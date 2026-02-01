@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Arial', sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            overflow: hidden;
+            cursor: none;
+        }
+        body::before { content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: -1; }
+        .container { text-align: center; z-index: 10; }
+        h1 { color: white; font-size: 2.5em; margin-bottom: 20px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+        .popup {
+            background: rgba(255,255,255,0.95);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+            max-width: 400px; margin: 0 auto;
+        }
+        .question { font-size: 1.5em; color: #ff4081; margin-bottom: 30px; font-weight: bold; }
+        .buttons { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+        button {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+        .yes { background: #ff4081; color: white; transform: scale(1); }
+        .yes:hover { transform: scale(1.1); }
+        .no {
+            background: #ffb3ba;
+            color: #ff4081;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .no:hover {
+            transform: translate(calc(50vw * var(--dir-x, 1)), calc(50vh * var(--dir-y, 1))) scale(0.9) !important;
+        }
+        @media (max-width: 600px) {
+            h1 { font-size: 2em; }
+            .popup { padding: 30px 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="greeting"></h1>
+        <div class="popup">
+            <div class="question" id="question"></div>
+            <div class="buttons">
+                <button class="yes" onclick="handleYes()">❤️ Yes ❤️</button>
+                <button class="no" id="noBtn" onmouseover="moveNo(event)">😘 No 😘</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        // CUSTOMIZE HERE
+        const custom = {
+            bgImage: 'images/4.png',
+            greeting: 'Hi Chakanthallilu 🥰',
+            question: 'Will you be my Valentine? 💕',
+            name1: 'JeDiDiAh',
+            name2: 'cHinNi',
+            yesUrl: 'https://wa.me/919030827969?text=Yes%20Nelluri,%20I%20will%20be%20your%20Valentine.%20%20Can't%20wait%20to%20spend%20this%20day%20with%20you.%20-Chinni%20' // Customize redirect
+        };
+
+        // Apply customizations
+        document.body.style.backgroundImage = custom.bgImage ? `url(${custom.bgImage})` : '';
+        document.getElementById('greeting').textContent = custom.greeting;
+        document.getElementById('question').textContent = `${custom.name1}, ${custom.question}`;
+
+        let noClicks = 0;
+        const noTexts = ['No? Really? 😢', 'Think again! 💔', 'Pretty please? 🥺', 'Come on! 😍'];
+
+        function handleYes() {
+            window.location.href = custom.yesUrl;
+        }
+
+        function moveNo(e) {
+            const noBtn = document.getElementById('noBtn');
+            const rect = noBtn.getBoundingClientRect();
+            const dirX = e.clientX > rect.left + rect.width / 2 ? 1 : -1;
+            const dirY = e.clientY > rect.top + rect.height / 2 ? 1 : -1;
+            noBtn.style.setProperty('--dir-x', dirX);
+            noBtn.style.setProperty('--dir-y', dirY);
+            noClicks++;
+            if (noClicks < noTexts.length) {
+                noBtn.textContent = noTexts[noClicks];
+            }
+            document.querySelector('.yes').style.transform = `scale(${1 + noClicks * 0.1})`;
+        }
+    </script>
+</body>
+</html>
