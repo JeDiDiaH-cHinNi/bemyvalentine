@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Be My Valentine-Chakanthallilu</title>
-    <style>
+    <title>Be My Valentine_Chakanthallilu</title>
+       <style>
       * {
         box-sizing: border-box;
       }
@@ -81,56 +81,86 @@
         max-width: 220px;
         margin-top: 20px;
         border-radius: 15px;
-        }
+      }
     </style>
-</head>
-<body>
-    <div class="container">
-        <h1 id="greeting"></h1>
-        <div class="popup">
-            <div class="question" id="question"></div>
-            <div class="buttons">
-                <button class="yes" onclick="handleYes()">💖 Yes 💖</button>
-                <button class="no" id="noBtn" onmouseover="moveNo(event)">🙈 No 🙈</button>
-            </div>
-        </div>
+  </head>
+
+  <body>
+    <audio id="noSound" preload="auto">
+       <source
+        src="https://www.myinstants.com/media/sounds/windows-error.mp3"
+        type="audio/mpeg"
+      />
+    </audio>
+
+    <audio id="yesSound" preload="auto">
+      <source
+        src="https://www.myinstants.com/media/sounds/tadaa.mp3"
+        type="audio/mpeg"
+      />
+    </audio>
+
+    <div class="card" id="card">
+      <h1>Hey Cutie 💕</h1>
+      <p>Will you be my Valentine?</p>
+
+      <div class="buttons">
+        <button id="yesBtn">Yes 💖</button>
+        <button id="noBtn">No 🙈</button>
+      </div>
+
+      <div class="shy-text">"No" seems a bit shy 😈</div>
     </div>
+
     <script>
-        // CUSTOMIZE HERE
-        const custom = {
-            bgImage: '4.png',
-            greeting: 'Hi Chakanthallilu 🥰',
-            question: 'Will you be my Valentine? 💕',
-            name1: 'JeDiDiAh',
-            name2: 'cHinNi',
-            yesUrl: 'https://wa.me/919030827969?text=Yes%20Nelluri,%20I%20will%20be%20your%20Valentine.%20%20Can't%20wait%20to%20spend%20this%20day%20with%20you.%20-Chinni%20' // Customize redirect
-        };
+      const noBtn = document.getElementById("noBtn");
+      const card = document.getElementById("card");
+      const noSound = document.getElementById("noSound");
+      const yesSound = document.getElementById("yesSound");
+      const yesBtn = document.getElementById("yesBtn");
 
-        // Apply customizations
-        document.body.style.backgroundImage = custom.bgImage ? `url(${custom.bgImage})` : '';
-        document.getElementById('greeting').textContent = custom.greeting;
-        document.getElementById('question').textContent = `${custom.name1}, ${custom.question}`;
+      function moveNoButton() {
+        noSound.currentTime = 0;
+        noSound.play();
 
-        let noClicks = 0;
-        const noTexts = ['No? Really? 😢', 'Think again! 💔', 'Pretty please? 🥺', 'Come on! 😍'];
+        const cardRect = card.getBoundingClientRect();
+        const btnRect = noBtn.getBoundingClientRect();
 
-        function handleYes() {
-            window.location.href = custom.yesUrl;
+        const padding = 20;
+
+        const maxX = cardRect.width - btnRect.width - padding;
+        const maxY = cardRect.height - btnRect.height - padding;
+
+        const x = Math.random() * maxX;
+        const y = Math.random() * maxY;
+
+        noBtn.style.position = "absolute";
+        noBtn.style.left = x + "px";
+        noBtn.style.top = y + "px";
+      }
+
+      noBtn.addEventListener("pointerenter", (e) => {
+        if (e.pointerType === "mouse") moveNoButton();
+      });
+
+      noBtn.addEventListener("pointerdown", (e) => {
+        if (e.pointerType === "touch") {
+          e.preventDefault();
+          moveNoButton();
         }
+      });
 
-        function moveNo(e) {
-            const noBtn = document.getElementById('noBtn');
-            const rect = noBtn.getBoundingClientRect();
-            const dirX = e.clientX > rect.left + rect.width / 2 ? 1 : -1;
-            const dirY = e.clientY > rect.top + rect.height / 2 ? 1 : -1;
-            noBtn.style.setProperty('--dir-x', dirX);
-            noBtn.style.setProperty('--dir-y', dirY);
-            noClicks++;
-            if (noClicks < noTexts.length) {
-                noBtn.textContent = noTexts[noClicks];
-            }
-            document.querySelector('.yes').style.transform = `scale(${1 + noClicks * 0.1})`;
-        }
+      yesBtn.addEventListener("click", () => {
+        yesSound.currentTime = 0;
+        yesSound.play();
+
+        card.innerHTML = `
+          <h1>YAYYYY 🎉</h1>
+          <p>You just made my day 🥰</p>
+          <img class="gif"
+            src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif" />
+        `;
+      });
     </script>
-</body>
+  </body>
 </html>
