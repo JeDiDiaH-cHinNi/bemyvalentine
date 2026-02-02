@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Be My Valentine_Chakanthallilu</title>
-       <style>
+    <style>
       * {
         box-sizing: border-box;
       }
@@ -77,11 +77,12 @@
         color: #ff4d6d;
       }
 
-      .gif {
+      .video-gif {
         width: 100%;
         max-width: 220px;
         margin-top: 20px;
         border-radius: 15px;
+        display: block;
       }
     </style>
   </head>
@@ -158,8 +159,10 @@
         card.innerHTML = `
           <h1>YAYYYY 🎉</h1>
           <p>You just made my day 🥰</p>
-          <img class="gif"
-            src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif" />
+          <video class="video-gif" autoplay loop muted playsinline>
+            <source src="Video.mp4" type="video/mp4">
+            Your browser does not support video. Download: <a href="Video.mp4">Video.mp4</a>
+          </video>
         `;
       });
     </script>
