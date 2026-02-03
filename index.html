@@ -23,129 +23,136 @@
         cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='%23ff69b4' d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E"), pointer;
       }
 
-      /* ALL 8 images - FREE FLOATING across screen */
+      /* ALL 10 images - BRIGHT FOREVER, FREE FLOATING */
       .float-img {
         position: fixed;
         width: auto !important;
         height: auto !important;
-        max-width: 200px !important;
-        max-height: 280px !important;
+        max-width: 180px !important;
+        max-height: 250px !important;
         object-fit: contain;
         border-radius: 20px;
         box-shadow: 0 10px 30px rgba(255, 105, 180, 0.6);
         border: 3px solid rgba(255, 255, 255, 0.5);
         z-index: 1;
         pointer-events: none;
-        animation: freeFloat 25s infinite ease-in-out;
+        opacity: 1 !important; /* ALWAYS BRIGHT */
       }
 
-      /* 8 UNIQUE FLOATING PATHS - criss-cross screen */
-      .float-img:nth-child(1) { left: 5%; animation: freeFloat1 28s infinite ease-in-out; }
-      .float-img:nth-child(2) { left: 20%; animation: freeFloat2 32s infinite ease-in-out; }
-      .float-img:nth-child(3) { left: 40%; animation: freeFloat3 26s infinite ease-in-out; }
-      .float-img:nth-child(4) { left: 65%; animation: freeFloat4 30s infinite ease-in-out; }
-      .float-img:nth-child(5) { left: 85%; animation: freeFloat5 27s infinite ease-in-out; }
-      .float-img:nth-child(6) { left: 15%; animation: freeFloat6 29s infinite ease-in-out; }
-      .float-img:nth-child(7) { left: 75%; animation: freeFloat7 31s infinite ease-in-out; }
-      .float-img:nth-child(8) { left: 35%; animation: freeFloat8 25s infinite ease-in-out; }
+      /* 10 UNIQUE FLOATING PATHS - criss-cross screen */
+      .float-img:nth-child(1) { animation: freeFloat1 28s infinite ease-in-out; }
+      .float-img:nth-child(2) { animation: freeFloat2 32s infinite ease-in-out; }
+      .float-img:nth-child(3) { animation: freeFloat3 26s infinite ease-in-out; }
+      .float-img:nth-child(4) { animation: freeFloat4 30s infinite ease-in-out; }
+      .float-img:nth-child(5) { animation: freeFloat5 27s infinite ease-in-out; }
+      .float-img:nth-child(6) { animation: freeFloat6 29s infinite ease-in-out; }
+      .float-img:nth-child(7) { animation: freeFloat7 31s infinite ease-in-out; }
+      .float-img:nth-child(8) { animation: freeFloat8 25s infinite ease-in-out; }
+      .float-img:nth-child(9) { animation: freeFloat9 33s infinite ease-in-out; }
+      .float-img:nth-child(10) { animation: freeFloat10 24s infinite ease-in-out; }
 
-      /* 8 varied free-floating paths */
+      /* 10 varied free-floating paths - NO OPACITY CHANGES */
       @keyframes freeFloat1 {
-        0% { top: 90vh; left: 5%; transform: scale(0.8) rotate(0deg); opacity: 0; }
-        15% { opacity: 1; }
+        0% { top: 90vh; left: 5%; transform: scale(0.8) rotate(0deg); }
         33% { top: 20vh; left: 15%; transform: scale(1.1) rotate(90deg); }
         66% { top: 40vh; left: 70%; transform: scale(0.9) rotate(180deg); }
-        85% { opacity: 1; }
-        100% { top: 10vh; left: 90%; transform: scale(1.2) rotate(360deg); opacity: 0; }
+        100% { top: 10vh; left: 90%; transform: scale(1.2) rotate(360deg); }
       }
 
       @keyframes freeFloat2 {
-        0% { top: 100vh; left: 20%; transform: scale(0.9) rotate(0deg); opacity: 0; }
-        20% { opacity: 1; }
+        0% { top: 100vh; left: 20%; transform: scale(0.9) rotate(0deg); }
         40% { top: 30vh; left: 80%; transform: scale(1.0) rotate(120deg); }
         70% { top: 60vh; left: 10%; transform: scale(1.1) rotate(240deg); }
-        100% { top: 20vh; left: 50%; transform: scale(0.8) rotate(360deg); opacity: 0; }
+        100% { top: 20vh; left: 50%; transform: scale(0.8) rotate(360deg); }
       }
 
       @keyframes freeFloat3 {
-        0% { top: 80vh; left: 40%; transform: scale(0.8) rotate(0deg); opacity: 0; }
-        10% { opacity: 1; }
+        0% { top: 80vh; left: 40%; transform: scale(0.8) rotate(0deg); }
         35% { top: 10vh; left: 60%; transform: scale(1.2) rotate(60deg); }
         65% { top: 70vh; left: 20%; transform: scale(1.0) rotate(200deg); }
-        100% { top: 30vh; left: 85%; transform: scale(0.9) rotate(340deg); opacity: 0; }
+        100% { top: 30vh; left: 85%; transform: scale(0.9) rotate(340deg); }
       }
 
       @keyframes freeFloat4 {
-        0% { top: 95vh; left: 65%; transform: scale(1.0) rotate(0deg); opacity: 0; }
-        12% { opacity: 1; }
+        0% { top: 95vh; left: 65%; transform: scale(1.0) rotate(0deg); }
         45% { top: 50vh; left: 5%; transform: scale(0.9) rotate(150deg); }
         80% { top: 15vh; left: 75%; transform: scale(1.1) rotate(300deg); }
-        100% { top: 80vh; left: 30%; transform: scale(1.2) rotate(360deg); opacity: 0; }
+        100% { top: 80vh; left: 30%; transform: scale(1.2) rotate(360deg); }
       }
 
       @keyframes freeFloat5 {
-        0% { top: 110vh; left: 85%; transform: scale(0.7) rotate(0deg); opacity: 0; }
-        18% { opacity: 1; }
+        0% { top: 110vh; left: 85%; transform: scale(0.7) rotate(0deg); }
         30% { top: 40vh; left: 90%; transform: scale(1.1) rotate(45deg); }
         60% { top: 20vh; left: 25%; transform: scale(1.0) rotate(180deg); }
-        100% { top: 60vh; left: 60%; transform: scale(0.8) rotate(360deg); opacity: 0; }
+        100% { top: 60vh; left: 60%; transform: scale(0.8) rotate(360deg); }
       }
 
       @keyframes freeFloat6 {
-        0% { top: 85vh; left: 15%; transform: scale(0.9) rotate(0deg); opacity: 0; }
-        8% { opacity: 1; }
+        0% { top: 85vh; left: 15%; transform: scale(0.9) rotate(0deg); }
         50% { top: 25vh; left: 45%; transform: scale(1.2) rotate(270deg); }
         90% { top: 55vh; left: 80%; transform: scale(0.9) rotate(350deg); }
-        100% { top: 90vh; left: 10%; transform: scale(1.0) rotate(360deg); opacity: 0; }
+        100% { top: 90vh; left: 10%; transform: scale(1.0) rotate(360deg); }
       }
 
       @keyframes freeFloat7 {
-        0% { top: 105vh; left: 75%; transform: scale(0.8) rotate(0deg); opacity: 0; }
-        14% { opacity: 1; }
+        0% { top: 105vh; left: 75%; transform: scale(0.8) rotate(0deg); }
         40% { top: 60vh; left: 30%; transform: scale(1.1) rotate(100deg); }
         75% { top: 10vh; left: 85%; transform: scale(1.0) rotate(250deg); }
-        100% { top: 70vh; left: 50%; transform: scale(1.2) rotate(360deg); opacity: 0; }
+        100% { top: 70vh; left: 50%; transform: scale(1.2) rotate(360deg); }
       }
 
       @keyframes freeFloat8 {
-        0% { top: 92vh; left: 35%; transform: scale(1.0) rotate(0deg); opacity: 0; }
-        16% { opacity: 1; }
+        0% { top: 92vh; left: 35%; transform: scale(1.0) rotate(0deg); }
         35% { top: 15vh; left: 70%; transform: scale(0.9) rotate(80deg); }
         70% { top: 45vh; left: 15%; transform: scale(1.2) rotate(220deg); }
-        100% { top: 25vh; left: 90%; transform: scale(1.1) rotate(360deg); opacity: 0; }
+        100% { top: 25vh; left: 90%; transform: scale(1.1) rotate(360deg); }
       }
 
-      /* 20 FASTER HEARTS */
+      @keyframes freeFloat9 {
+        0% { top: 88vh; left: 25%; transform: scale(0.9) rotate(0deg); }
+        30% { top: 35vh; left: 85%; transform: scale(1.1) rotate(135deg); }
+        65% { top: 65vh; left: 40%; transform: scale(1.0) rotate(225deg); }
+        100% { top: 15vh; left: 75%; transform: scale(1.2) rotate(360deg); }
+      }
+
+      @keyframes freeFloat10 {
+        0% { top: 98vh; left: 55%; transform: scale(0.8) rotate(0deg); }
+        25% { top: 20vh; left: 20%; transform: scale(1.2) rotate(315deg); }
+        60% { top: 50vh; left: 90%; transform: scale(0.9) rotate(90deg); }
+        100% { top: 75vh; left: 35%; transform: scale(1.1) rotate(360deg); }
+      }
+
+      /* 20 FAST HEARTS */
       .heart {
         position: fixed;
         font-size: 22px;
         color: #ff69b4;
         z-index: 2;
         pointer-events: none;
-        animation: floatHeart 12s infinite linear; /* FASTER: 12s */
+        animation: floatHeart 12s infinite linear;
       }
 
-      /* 20 hearts with staggered timing */
-      .heart:nth-child(9) { left: 5%; animation-delay: 0s; }
-      .heart:nth-child(10) { left: 12%; animation-delay: -1s; }
-      .heart:nth-child(11) { left: 20%; animation-delay: -2s; }
-      .heart:nth-child(12) { left: 28%; animation-delay: -3s; }
-      .heart:nth-child(13) { left: 35%; animation-delay: -4s; }
-      .heart:nth-child(14) { left: 45%; animation-delay: -5s; }
-      .heart:nth-child(15) { left: 55%; animation-delay: -6s; }
-      .heart:nth-child(16) { left: 65%; animation-delay: -7s; }
-      .heart:nth-child(17) { left: 72%; animation-delay: -8s; }
-      .heart:nth-child(18) { left: 80%; animation-delay: -9s; }
-      .heart:nth-child(19) { left: 88%; animation-delay: -10s; font-size: 26px; }
-      .heart:nth-child(20) { left: 95%; animation-delay: -11s; font-size: 18px; }
-      .heart:nth-child(21) { left: 10%; animation-delay: -0.5s; }
-      .heart:nth-child(22) { left: 25%; animation-delay: -1.5s; }
-      .heart:nth-child(23) { left: 50%; animation-delay: -2.5s; font-size: 28px; }
-      .heart:nth-child(24) { left: 70%; animation-delay: -3.5s; }
-      .heart:nth-child(25) { left: 90%; animation-delay: -4.5s; }
-      .heart:nth-child(26) { left: 15%; animation-delay: -5.5s; font-size: 20px; }
-      .heart:nth-child(27) { left: 40%; animation-delay: -6.5s; }
-      .heart:nth-child(28) { left: 82%; animation-delay: -7.5s; font-size: 24px; }
+      /* 20 hearts (nth-child 11-30 after 10 images) */
+      .heart:nth-child(11) { left: 5%; animation-delay: 0s; }
+      .heart:nth-child(12) { left: 12%; animation-delay: -1s; }
+      .heart:nth-child(13) { left: 20%; animation-delay: -2s; }
+      .heart:nth-child(14) { left: 28%; animation-delay: -3s; }
+      .heart:nth-child(15) { left: 35%; animation-delay: -4s; }
+      .heart:nth-child(16) { left: 45%; animation-delay: -5s; }
+      .heart:nth-child(17) { left: 55%; animation-delay: -6s; }
+      .heart:nth-child(18) { left: 65%; animation-delay: -7s; }
+      .heart:nth-child(19) { left: 72%; animation-delay: -8s; }
+      .heart:nth-child(20) { left: 80%; animation-delay: -9s; }
+      .heart:nth-child(21) { left: 88%; animation-delay: -10s; font-size: 26px; }
+      .heart:nth-child(22) { left: 95%; animation-delay: -11s; font-size: 18px; }
+      .heart:nth-child(23) { left: 10%; animation-delay: -0.5s; }
+      .heart:nth-child(24) { left: 25%; animation-delay: -1.5s; }
+      .heart:nth-child(25) { left: 50%; animation-delay: -2.5s; font-size: 28px; }
+      .heart:nth-child(26) { left: 70%; animation-delay: -3.5s; }
+      .heart:nth-child(27) { left: 90%; animation-delay: -4.5s; }
+      .heart:nth-child(28) { left: 15%; animation-delay: -5.5s; font-size: 20px; }
+      .heart:nth-child(29) { left: 40%; animation-delay: -6.5s; }
+      .heart:nth-child(30) { left: 82%; animation-delay: -7.5s; font-size: 24px; }
 
       @keyframes floatHeart {
         0% { top: 100vh; opacity: 0; transform: scale(0) rotate(0deg) translateY(0); }
@@ -222,7 +229,7 @@
 
       @media (max-width: 480px) {
         body { padding: 10px; }
-        .float-img { max-width: 110px !important; max-height: 150px !important; }
+        .float-img { max-width: 100px !important; max-height: 140px !important; }
         .heart { font-size: 18px; }
         .card { padding: 35px 20px 55px; max-width: 380px; margin: 10px; }
         h1 { font-size: 1.6rem; }
@@ -232,17 +239,19 @@
   </head>
 
   <body>
-    <!-- ALL 8 IMAGES (reusing 1-5.png) - FREE FLOATING EVERYWHERE -->
+    <!-- 10 BRIGHT FLOATING IMAGES (reusing 1-5.png twice) -->
     <img src="1.png" class="float-img" alt="Photo 1">
     <img src="2.png" class="float-img" alt="Photo 2">
     <img src="3.png" class="float-img" alt="Photo 3">
     <img src="4.png" class="float-img" alt="Photo 4">
     <img src="5.png" class="float-img" alt="Photo 5">
-    <img src="2.png" class="float-img" alt="Photo 2">
-    <img src="4.png" class="float-img" alt="Photo 4">
     <img src="1.png" class="float-img" alt="Photo 1">
+    <img src="2.png" class="float-img" alt="Photo 2">
+    <img src="3.png" class="float-img" alt="Photo 3">
+    <img src="4.png" class="float-img" alt="Photo 4">
+    <img src="5.png" class="float-img" alt="Photo 5">
 
-    <!-- 20 FAST HEARTS (nth-child 9-28) -->
+    <!-- 20 FAST HEARTS -->
     <div class="heart">💖</div><div class="heart">💕</div><div class="heart">💗</div>
     <div class="heart">💖</div><div class="heart">💕</div><div class="heart">💗</div>
     <div class="heart">💖</div><div class="heart">💕</div><div class="heart">💝</div>
