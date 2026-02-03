@@ -12,62 +12,104 @@
       body {
         margin: 0;
         min-height: 100vh;
-        background: #000; /* Black background for floating images */
+        background: #000;
         display: flex;
         justify-content: center;
         align-items: center;
         font-family: "Poppins", sans-serif;
         padding: 20px;
         position: relative;
-        overflow-x: hidden;
+        overflow: hidden;
         cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='%23ff69b4' d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E"), pointer;
       }
 
-      /* Floating Images */
+      /* Floating Images - NO OVERLAP VERSION */
       .floating-img {
         position: fixed;
-        width: 1080px;
-        height: 1920px;
+        max-width: 180px;
+        max-height: 280px;
+        width: auto;
+        height: auto;
         object-fit: cover;
         border-radius: 12px;
         box-shadow: 0 8px 25px rgba(255, 77, 109, 0.4);
         border: 1px solid rgba(255, 255, 255, 0.3);
         z-index: 1;
         pointer-events: none;
-        animation: float 20s infinite linear;
       }
 
-      .floating-img:nth-child(1) { animation-duration: 50s; animation-delay: 0s; left: 10%; }
-      .floating-img:nth-child(2) { animation-duration: 60s; animation-delay: -5s; left: 20%; }
-      .floating-img:nth-child(3) { animation-duration: 44s; animation-delay: -10s; left: 70%; }
-      .floating-img:nth-child(4) { animation-duration: 56s; animation-delay: -15s; left: 85%; }
-      .floating-img:nth-child(5) { animation-duration: 52s; animation-delay: -20s; left: 35%; }
+      /* 5 Staggered horizontal lanes */
+      .floating-img:nth-child(1) { 
+        left: 5%; 
+        animation: float1 45s infinite linear; 
+      }
+      .floating-img:nth-child(2) { 
+        left: 25%; 
+        animation: float2 55s infinite linear; 
+      }
+      .floating-img:nth-child(3) { 
+        left: 50%; 
+        animation: float3 40s infinite linear; 
+      }
+      .floating-img:nth-child(4) { 
+        left: 75%; 
+        animation: float4 60s infinite linear; 
+      }
+      .floating-img:nth-child(5) { 
+        left: 90%; 
+        animation: float5 50s infinite linear; 
+      }
 
-      @keyframes float {
-        0% {
-          transform: translateY(100vh) rotate(0deg) scale(0.8);
-          opacity: 0.7;
-        }
-        10% {
-          opacity: 1;
-        }
-        90% {
-          opacity: 1;
-        }
-        100% {
-          transform: translateY(-100px) rotate(360deg) scale(1.1);
-          opacity: 0.7;
-        }
+      @keyframes float1 {
+        0% { top: 100%; transform: rotate(0deg); opacity: 0.7; }
+        20% { top: 70%; }
+        40% { top: 40%; }
+        60% { top: 20%; }
+        80% { top: 10%; }
+        100% { top: -20%; transform: rotate(180deg); opacity: 0.7; }
+      }
+
+      @keyframes float2 {
+        0% { top: 120%; transform: rotate(0deg); opacity: 0.7; }
+        20% { top: 80%; }
+        40% { top: 50%; }
+        60% { top: 25%; }
+        80% { top: 5%; }
+        100% { top: -10%; transform: rotate(200deg); opacity: 0.7; }
+      }
+
+      @keyframes float3 {
+        0% { top: 90%; transform: rotate(0deg); opacity: 0.7; }
+        25% { top: 65%; }
+        50% { top: 35%; }
+        75% { top: 15%; }
+        100% { top: -15%; transform: rotate(160deg); opacity: 0.7; }
+      }
+
+      @keyframes float4 {
+        0% { top: 110%; transform: rotate(0deg); opacity: 0.7; }
+        20% { top: 75%; }
+        45% { top: 45%; }
+        70% { top: 20%; }
+        100% { top: -5%; transform: rotate(240deg); opacity: 0.7; }
+      }
+
+      @keyframes float5 {
+        0% { top: 130%; transform: rotate(0deg); opacity: 0.7; }
+        25% { top: 85%; }
+        50% { top: 55%; }
+        75% { top: 25%; }
+        100% { top: 0%; transform: rotate(300deg); opacity: 0.7; }
       }
 
       .card {
         background: rgba(255, 255, 255, 0.95);
-        padding: 30px 20px 50px;
-        border-radius: 10px;
+        padding: 50px 30px 70px;
+        border-radius: 25px;
         text-align: center;
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         width: 100%;
-        max-width: 360px;
+        max-width: 420px;
         position: relative;
         z-index: 10;
         backdrop-filter: blur(10px);
@@ -76,12 +118,13 @@
       h1 {
         color: #ff4d6d;
         margin-bottom: 10px;
-        font-size: 1.8rem;
+        font-size: 2rem;
       }
 
       p {
         color: #555;
         margin-bottom: 25px;
+        font-size: 1.2rem;
       }
 
       .buttons {
@@ -91,8 +134,8 @@
       }
 
       button {
-        padding: 12px 22px;
-        font-size: 16px;
+        padding: 15px 25px;
+        font-size: 18px;
         border: none;
         border-radius: 25px;
         cursor: pointer;
@@ -119,28 +162,43 @@
 
       .video-gif {
         width: 100%;
-        max-width: 220px;
+        max-width: 280px;
         margin: 20px auto 0;
         border-radius: 15px;
         display: block;
       }
 
       @media (max-width: 480px) {
+        body {
+          padding: 10px;
+        }
         .floating-img {
-          width: 60px;
-          height: 60px;
+          max-width: 120px !important;
+          max-height: 180px !important;
+        }
+        .card {
+          padding: 35px 20px 55px;
+          max-width: 380px;
+          margin: 10px;
+        }
+        h1 {
+          font-size: 1.6rem;
+        }
+        button {
+          padding: 12px 20px;
+          font-size: 16px;
         }
       }
     </style>
   </head>
 
   <body>
-    <!-- 5 Floating Images (place all 5 JPGs in same folder) -->
-    <img src="1.png" class="floating-img" alt="">
-    <img src="2.png" class="floating-img" alt="">
-    <img src="3.png" class="floating-img" alt="">
-    <img src="4.png" class="floating-img" alt="">
-    <img src="5.png" class="floating-img" alt="">
+    <!-- 5 Floating Images - Side by Side Paths -->
+    <img src="1.jpg" class="floating-img" alt="">
+    <img src="2.jpg" class="floating-img" alt="">
+    <img src="3.jpg" class="floating-img" alt="">
+    <img src="4.jpg" class="floating-img" alt="">
+    <img src="5.jpg" class="floating-img" alt="">
 
     <audio id="noSound" preload="auto">
        <source src="https://www.myinstants.com/media/sounds/windows-error.mp3" type="audio/mpeg" />
@@ -171,7 +229,7 @@
 
       function moveNoButton() {
         noSound.currentTime = 0;
-        noSound.play();
+        noSound.play().catch(() => {});
 
         const cardRect = card.getBoundingClientRect();
         const btnRect = noBtn.getBoundingClientRect();
@@ -201,14 +259,14 @@
 
       yesBtn.addEventListener("click", () => {
         yesSound.currentTime = 0;
-        yesSound.play();
+        yesSound.play().catch(() => {});
 
         card.innerHTML = `
           <h1>YAYYYY 🎉</h1>
           <p>You just made my day 🥰</p>
-          <video class="video-gif" autoplay loop muted playsinline>
+          <video class="video-gif" poster="image.jpg" autoplay loop muted playsinline>
             <source src="Video.mp4" type="video/mp4">
-            Your browser does not support video. Download: <a href="Video.mp4">Video.mp4</a>
+            Your browser does not support video.
           </video>
         `;
       });
