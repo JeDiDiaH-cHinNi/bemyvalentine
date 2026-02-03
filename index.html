@@ -251,16 +251,6 @@
     <img src="4.png" class="float-img" alt="Photo 4">
     <img src="5.png" class="float-img" alt="Photo 5">
 
-    <!-- 20 FAST HEARTS -->
-    <div class="heart">💖</div><div class="heart">💕</div><div class="heart">💗</div>
-    <div class="heart">💖</div><div class="heart">💕</div><div class="heart">💗</div>
-    <div class="heart">💖</div><div class="heart">💕</div><div class="heart">💝</div>
-    <div class="heart">💖</div><div class="heart">💕</div><div class="heart">💗</div>
-    <div class="heart">💖</div><div class="heart">💕</div><div class="heart">💗</div>
-    <div class="heart">💖</div><div class="heart">💕</div><div class="heart">💗</div>
-    <div class="heart">💖</div><div class="heart">💕</div><div class="heart">💝</div>
-    <div class="heart">💖</div>
-
     <audio id="noSound" preload="auto">
       <source src="https://www.myinstants.com/media/sounds/windows-error.mp3" type="audio/mpeg" />
     </audio>
@@ -280,6 +270,42 @@
     </div>
 
     <script>
+    // ---------------------------
+    // FREE-FLOATING HEARTS (JS)
+    // ---------------------------
+    const heartsLayer = document.getElementById("heartsLayer");
+    const heartEmojis = ["💖","💕","💗","💝","💘","💞"];
+
+    function makeHeart(i) {
+      const el = document.createElement("div");
+      el.className = "heart";
+      el.textContent = heartEmojis[i % heartEmojis.length];
+
+      // Randomize motion
+      const x = Math.random() * 100; // vw
+      const size = 16 + Math.random() * 18; // px
+      const dur = 7 + Math.random() * 8; // seconds
+      const drift = (Math.random() * 240 - 120).toFixed(0) + "px"; // left/right drift
+      const sway = (12 + Math.random() * 40).toFixed(0) + "px"; // small curve
+      const swayDur = (1.8 + Math.random() * 2.6).toFixed(2) + "s";
+      const delay = (-Math.random() * dur).toFixed(2) + "s"; // negative to stagger instantly
+
+      el.style.setProperty("--x", x.toFixed(2) + "vw");
+      el.style.setProperty("--size", size.toFixed(0) + "px");
+      el.style.setProperty("--dur", dur.toFixed(2) + "s");
+      el.style.setProperty("--drift", drift);
+      el.style.setProperty("--sway", sway);
+      el.style.setProperty("--swayDur", swayDur);
+      el.style.setProperty("--delay", delay);
+
+      heartsLayer.appendChild(el);
+    }
+
+    // Increase count if you want more
+    const HEART_COUNT = 30;
+    for (let i = 0; i < HEART_COUNT; i++) makeHeart(i);
+
+        
       const noBtn = document.getElementById("noBtn");
       const card = document.getElementById("card");
       const noSound = document.getElementById("noSound");
