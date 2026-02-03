@@ -40,16 +40,16 @@
     }
 
     /* Keep your “10 unique paths” idea, but make 0% === 100% to avoid snap-back */
-    .float-img:nth-of-type(1) { animation: orbit1 28s infinite linear; }
-    .float-img:nth-of-type(2) { animation: orbit2 32s infinite linear; }
-    .float-img:nth-of-type(3) { animation: orbit3 26s infinite linear; }
-    .float-img:nth-of-type(4) { animation: orbit4 30s infinite linear; }
-    .float-img:nth-of-type(5) { animation: orbit5 27s infinite linear; }
-    .float-img:nth-of-type(6) { animation: orbit6 29s infinite linear; }
-    .float-img:nth-of-type(7) { animation: orbit7 31s infinite linear; }
-    .float-img:nth-of-type(8) { animation: orbit8 25s infinite linear; }
-    .float-img:nth-of-type(9) { animation: orbit9 33s infinite linear; }
-    .float-img:nth-of-type(10){ animation: orbit10 24s infinite linear; }
+    .float-img:nth-child(1) { animation: orbit1 28s infinite ease-in-out; }
+    .float-img:nth-child(2) { animation: orbit2 32s infinite ease-in-out; }
+    .float-img:nth-child(3) { animation: orbit3 26s infinite ease-in-out; }
+    .float-img:nth-child(4) { animation: orbit4 30s infinite ease-in-out; }
+    .float-img:nth-child(5) { animation: orbit5 27s infinite ease-in-out; }
+    .float-img:nth-child(6) { animation: orbit6 29s infinite ease-in-out; }
+    .float-img:nth-child(7) { animation: orbit7 31s infinite ease-in-out; }
+    .float-img:nth-child(8) { animation: orbit8 25s infinite ease-in-out; }
+    .float-img:nth-child(9) { animation: orbit9 33s infinite ease-in-out; }
+    .float-img:nth-child(10){ animation: orbit10 24s infinite ease-in-out; }
 
     /* 0% and 100% are the same in EVERY orbit => seamless looping */
     @keyframes orbit1 {
