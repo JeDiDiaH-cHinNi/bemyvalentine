@@ -1,334 +1,328 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Be My Valentine_Chakanthallilu</title>
-
-  <style>
-    * { box-sizing: border-box; }
-
-    body {
-      margin: 0;
-      min-height: 100vh;
-      background: #000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-family: "Poppins", sans-serif;
-      padding: 20px;
-      position: relative;
-      overflow: hidden; /* IMPORTANT: no horizontal scroll / clean edges */
-      cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='%23ff69b4' d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E"), pointer;
-    }
-
-    /* FLOATING PHOTOS */
-    .float-img {
-      position: fixed;
-      width: auto !important;
-      height: auto !important;
-      max-width: 380px !important;
-      max-height: 450px !important;
-      object-fit: contain;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(255, 105, 180, 0.6);
-      border: 3px solid rgba(255, 255, 255, 0.5);
-      z-index: 1;
-      pointer-events: none;
-      opacity: 1 !important;
-      will-change: transform, top, left;
-    }
-
-    /* Keep your “10 unique paths” idea, but make 0% === 100% to avoid snap-back */
-    .float-img:nth-child(1) { animation: orbit1 28s infinite ease-in-out; }
-    .float-img:nth-child(2) { animation: orbit2 32s infinite ease-in-out; }
-    .float-img:nth-child(3) { animation: orbit3 26s infinite ease-in-out; }
-    .float-img:nth-child(4) { animation: orbit4 30s infinite ease-in-out; }
-    .float-img:nth-child(5) { animation: orbit5 27s infinite ease-in-out; }
-    .float-img:nth-child(6) { animation: orbit6 29s infinite ease-in-out; }
-    .float-img:nth-child(7) { animation: orbit7 31s infinite ease-in-out; }
-    .float-img:nth-child(8) { animation: orbit8 25s infinite ease-in-out; }
-    .float-img:nth-child(9) { animation: orbit9 33s infinite ease-in-out; }
-    .float-img:nth-child(10){ animation: orbit10 24s infinite ease-in-out; }
-
-    /* 0% and 100% are the same in EVERY orbit => seamless looping */
-    @keyframes orbit1 {
-      0%   { top: 90vh; left: 5%;  transform: translateZ(0) scale(0.85) rotate(0deg); }
-      25%  { top: 25vh; left: 18%; transform: translateZ(0) scale(1.10) rotate(80deg); }
-      50%  { top: 45vh; left: 72%; transform: translateZ(0) scale(0.95) rotate(160deg); }
-      75%  { top: 12vh; left: 88%; transform: translateZ(0) scale(1.15) rotate(260deg); }
-      100% { top: 90vh; left: 5%;  transform: translateZ(0) scale(0.85) rotate(360deg); }
-    }
-
-    @keyframes orbit2 {
-      0%   { top: 95vh; left: 20%; transform: translateZ(0) scale(0.90) rotate(0deg); }
-      25%  { top: 30vh; left: 82%; transform: translateZ(0) scale(1.05) rotate(110deg); }
-      50%  { top: 62vh; left: 12%; transform: translateZ(0) scale(1.12) rotate(210deg); }
-      75%  { top: 22vh; left: 52%; transform: translateZ(0) scale(0.85) rotate(300deg); }
-      100% { top: 95vh; left: 20%; transform: translateZ(0) scale(0.90) rotate(360deg); }
-    }
-
-    @keyframes orbit3 {
-      0%   { top: 82vh; left: 40%; transform: translateZ(0) scale(0.85) rotate(0deg); }
-      25%  { top: 12vh; left: 62%; transform: translateZ(0) scale(1.18) rotate(70deg); }
-      50%  { top: 72vh; left: 22%; transform: translateZ(0) scale(1.00) rotate(170deg); }
-      75%  { top: 32vh; left: 86%; transform: translateZ(0) scale(0.92) rotate(290deg); }
-      100% { top: 82vh; left: 40%; transform: translateZ(0) scale(0.85) rotate(360deg); }
-    }
-
-    @keyframes orbit4 {
-      0%   { top: 92vh; left: 65%; transform: translateZ(0) scale(1.00) rotate(0deg); }
-      25%  { top: 55vh; left: 8%;  transform: translateZ(0) scale(0.92) rotate(120deg); }
-      50%  { top: 18vh; left: 78%; transform: translateZ(0) scale(1.10) rotate(220deg); }
-      75%  { top: 78vh; left: 32%; transform: translateZ(0) scale(1.18) rotate(310deg); }
-      100% { top: 92vh; left: 65%; transform: translateZ(0) scale(1.00) rotate(360deg); }
-    }
-
-    @keyframes orbit5 {
-      0%   { top: 98vh; left: 85%; transform: translateZ(0) scale(0.78) rotate(0deg); }
-      25%  { top: 42vh; left: 90%; transform: translateZ(0) scale(1.12) rotate(60deg); }
-      50%  { top: 22vh; left: 28%; transform: translateZ(0) scale(1.00) rotate(170deg); }
-      75%  { top: 62vh; left: 62%; transform: translateZ(0) scale(0.88) rotate(280deg); }
-      100% { top: 98vh; left: 85%; transform: translateZ(0) scale(0.78) rotate(360deg); }
-    }
-
-    @keyframes orbit6 {
-      0%   { top: 86vh; left: 15%; transform: translateZ(0) scale(0.92) rotate(0deg); }
-      25%  { top: 28vh; left: 48%; transform: translateZ(0) scale(1.18) rotate(140deg); }
-      50%  { top: 58vh; left: 82%; transform: translateZ(0) scale(0.92) rotate(240deg); }
-      75%  { top: 92vh; left: 10%; transform: translateZ(0) scale(1.00) rotate(310deg); }
-      100% { top: 86vh; left: 15%; transform: translateZ(0) scale(0.92) rotate(360deg); }
-    }
-
-    @keyframes orbit7 {
-      0%   { top: 96vh; left: 75%; transform: translateZ(0) scale(0.85) rotate(0deg); }
-      25%  { top: 62vh; left: 32%; transform: translateZ(0) scale(1.10) rotate(90deg); }
-      50%  { top: 12vh; left: 86%; transform: translateZ(0) scale(1.00) rotate(200deg); }
-      75%  { top: 72vh; left: 52%; transform: translateZ(0) scale(1.18) rotate(300deg); }
-      100% { top: 96vh; left: 75%; transform: translateZ(0) scale(0.85) rotate(360deg); }
-    }
-
-    @keyframes orbit8 {
-      0%   { top: 90vh; left: 35%; transform: translateZ(0) scale(1.00) rotate(0deg); }
-      25%  { top: 18vh; left: 72%; transform: translateZ(0) scale(0.92) rotate(110deg); }
-      50%  { top: 48vh; left: 15%; transform: translateZ(0) scale(1.18) rotate(210deg); }
-      75%  { top: 28vh; left: 90%; transform: translateZ(0) scale(1.10) rotate(300deg); }
-      100% { top: 90vh; left: 35%; transform: translateZ(0) scale(1.00) rotate(360deg); }
-    }
-
-    @keyframes orbit9 {
-      0%   { top: 88vh; left: 25%; transform: translateZ(0) scale(0.92) rotate(0deg); }
-      25%  { top: 38vh; left: 85%; transform: translateZ(0) scale(1.12) rotate(120deg); }
-      50%  { top: 68vh; left: 42%; transform: translateZ(0) scale(1.00) rotate(210deg); }
-      75%  { top: 16vh; left: 75%; transform: translateZ(0) scale(1.18) rotate(300deg); }
-      100% { top: 88vh; left: 25%; transform: translateZ(0) scale(0.92) rotate(360deg); }
-    }
-
-    @keyframes orbit10 {
-      0%   { top: 94vh; left: 55%; transform: translateZ(0) scale(0.85) rotate(0deg); }
-      25%  { top: 22vh; left: 22%; transform: translateZ(0) scale(1.18) rotate(120deg); }
-      50%  { top: 52vh; left: 90%; transform: translateZ(0) scale(0.92) rotate(210deg); }
-      75%  { top: 78vh; left: 35%; transform: translateZ(0) scale(1.10) rotate(300deg); }
-      100% { top: 94vh; left: 55%; transform: translateZ(0) scale(0.85) rotate(360deg); }
-    }
-
-    /* HEARTS (generated via JS for true "free" motion) */
-    .heart {
-      position: fixed;
-      left: 0;
-      top: 0;
-      z-index: 2;
-      pointer-events: none;
-      will-change: transform, opacity;
-      transform: translate3d(var(--x, 50vw), 110vh, 0);
-      opacity: 0;
-      font-size: var(--size, 22px);
-      filter: drop-shadow(0 6px 10px rgba(255, 105, 180, 0.35));
-      animation:
-        floatUp var(--dur, 10s) linear infinite,
-        sway var(--swayDur, 2.6s) ease-in-out infinite alternate;
-      animation-delay: var(--delay, 0s);
-    }
-
-    @keyframes floatUp {
-      0%   { transform: translate3d(var(--x), 110vh, 0) rotate(0deg); opacity: 0; }
-      8%   { opacity: 1; }
-      90%  { opacity: 1; }
-      100% { transform: translate3d(calc(var(--x) + var(--drift, 0px)), -30vh, 0) rotate(360deg); opacity: 0; }
-    }
-
-    /* extra “curvy” movement */
-    @keyframes sway {
-      0%   { margin-left: 0px; }
-      100% { margin-left: var(--sway, 28px); }
-    }
-
-    .card {
-      background: rgba(255, 255, 255, 0.95);
-      padding: 50px 30px 70px;
-      border-radius: 25px;
-      text-align: center;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-      width: 100%;
-      max-width: 420px;
-      position: relative;
-      z-index: 10;
-      backdrop-filter: blur(10px);
-    }
-
-    h1 { color: #ff4d6d; margin-bottom: 10px; font-size: 2rem; }
-    p  { color: #555; margin-bottom: 25px; font-size: 1.2rem; }
-
-    .buttons { display: flex; justify-content: center; gap: 20px; }
-
-    button {
-      padding: 15px 25px;
-      font-size: 18px;
-      border: none;
-      border-radius: 25px;
-      cursor: pointer;
-      transition: 0.3s ease;
-    }
-
-    #yesBtn { background: #ff4d6d; color: white; }
-    #noBtn  { background: #ccc; color: #333; position: relative; user-select: none; }
-
-    .shy-text { margin-top: 18px; font-size: 14px; color: #ff4d6d; }
-
-    .video-gif {
-      width: 100%;
-      max-width: 280px;
-      margin: 20px auto 0;
-      border-radius: 15px;
-      display: block;
-    }
-
-    @media (max-width: 480px) {
-      body { padding: 10px; }
-      .float-img { max-width: 100px !important; max-height: 140px !important; }
-      .card { padding: 35px 20px 55px; max-width: 380px; margin: 10px; }
-      h1 { font-size: 1.6rem; }
-      button { padding: 12px 20px; font-size: 16px; }
-    }
-  </style>
-</head>
-
-<body>
-  <!-- 10 FLOATING IMAGES -->
-  <img src="1.png" class="float-img" alt="Photo 1" />
-  <img src="2.png" class="float-img" alt="Photo 2" />
-  <img src="3.png" class="float-img" alt="Photo 3" />
-  <img src="4.png" class="float-img" alt="Photo 4" />
-  <img src="5.png" class="float-img" alt="Photo 5" />
-  <img src="1.png" class="float-img" alt="Photo 6" />
-  <img src="2.png" class="float-img" alt="Photo 7" />
-  <img src="3.png" class="float-img" alt="Photo 8" />
-  <img src="4.png" class="float-img" alt="Photo 9" />
-  <img src="5.png" class="float-img" alt="Photo 10" />
-
-  <!-- Hearts will be injected here -->
-  <div id="heartsLayer" aria-hidden="true"></div>
-
-  <audio id="noSound" preload="auto">
-    <source src="https://www.myinstants.com/media/sounds/windows-error.mp3" type="audio/mpeg" />
-  </audio>
-
-  <audio id="yesSound" preload="auto">
-    <source src="https://www.myinstants.com/media/sounds/tadaa.mp3" type="audio/mpeg" />
-  </audio>
-
-  <div class="card" id="card">
-    <h1>Hi Chakanthallilu 🥰</h1>
-    <p>Will you be my Valentine?</p>
-    <div class="buttons">
-      <button id="yesBtn">💖 Yes 💖</button>
-      <button id="noBtn">🙈 No 🙈</button>
-    </div>
-    <div class="shy-text">"No" seems a bit shy 😈</div>
-  </div>
-
-  <script>
-    // ---------------------------
-    // FREE-FLOATING HEARTS (JS)
-    // ---------------------------
-    const heartsLayer = document.getElementById("heartsLayer");
-    const heartEmojis = ["💖","💕","💗","💝","💘","💞"];
-
-    function makeHeart(i) {
-      const el = document.createElement("div");
-      el.className = "heart";
-      el.textContent = heartEmojis[i % heartEmojis.length];
-
-      // Randomize motion
-      const x = Math.random() * 100; // vw
-      const size = 16 + Math.random() * 18; // px
-      const dur = 7 + Math.random() * 8; // seconds
-      const drift = (Math.random() * 240 - 120).toFixed(0) + "px"; // left/right drift
-      const sway = (12 + Math.random() * 40).toFixed(0) + "px"; // small curve
-      const swayDur = (1.8 + Math.random() * 2.6).toFixed(2) + "s";
-      const delay = (-Math.random() * dur).toFixed(2) + "s"; // negative to stagger instantly
-
-      el.style.setProperty("--x", x.toFixed(2) + "vw");
-      el.style.setProperty("--size", size.toFixed(0) + "px");
-      el.style.setProperty("--dur", dur.toFixed(2) + "s");
-      el.style.setProperty("--drift", drift);
-      el.style.setProperty("--sway", sway);
-      el.style.setProperty("--swayDur", swayDur);
-      el.style.setProperty("--delay", delay);
-
-      heartsLayer.appendChild(el);
-    }
-
-    // Increase count if you want more
-    const HEART_COUNT = 30;
-    for (let i = 0; i < HEART_COUNT; i++) makeHeart(i);
-
-    // ---------------------------
-    // Your button logic (same)
-    // ---------------------------
-    const noBtn = document.getElementById("noBtn");
-    const card = document.getElementById("card");
-    const noSound = document.getElementById("noSound");
-    const yesSound = document.getElementById("yesSound");
-    const yesBtn = document.getElementById("yesBtn");
-
-    function moveNoButton() {
-      noSound.currentTime = 0;
-      noSound.play().catch(() => {});
-      const cardRect = card.getBoundingClientRect();
-      const btnRect = noBtn.getBoundingClientRect();
-      const padding = 20;
-      const maxX = cardRect.width - btnRect.width - padding;
-      const maxY = cardRect.height - btnRect.height - padding;
-      const x = Math.random() * maxX;
-      const y = Math.random() * maxY;
-      noBtn.style.position = "absolute";
-      noBtn.style.left = x + "px";
-      noBtn.style.top = y + "px";
-    }
-
-    noBtn.addEventListener("pointerenter", (e) => {
-      if (e.pointerType === "mouse") moveNoButton();
-    });
-
-    noBtn.addEventListener("pointerdown", (e) => {
-      if (e.pointerType === "touch") {
-        e.preventDefault();
-        moveNoButton();
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine_Chakanthallilu</title>
+    <style>
+      * {
+        box-sizing: border-box;
       }
-    });
 
-    yesBtn.addEventListener("click", () => {
-      yesSound.currentTime = 0;
-      yesSound.play().catch(() => {});
-      card.innerHTML = `
-        <h1>YAYYYY 🎉</h1>
-        <p>You just made my day 🥰</p>
-        <video class="video-gif" poster="image.jpg" autoplay loop muted playsinline>
-          <source src="Video.mp4" type="video/mp4">
-        </video>
-      `;
-    });
-  </script>
-</body>
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: #000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: "Poppins", sans-serif;
+        padding: 20px;
+        position: relative;
+        overflow-x: hidden;
+        cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='%23ff69b4' d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E"), pointer;
+      }
+
+      /* ALL 10 images - BRIGHT FOREVER, FREE FLOATING */
+      .float-img {
+        position: fixed;
+        width: auto !important;
+        height: auto !important;
+        max-width: 380px !important;
+        max-height: 450px !important;
+        object-fit: contain;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(255, 105, 180, 0.6);
+        border: 3px solid rgba(255, 255, 255, 0.5);
+        z-index: 1;
+        pointer-events: none;
+        opacity: 1 !important; /* ALWAYS BRIGHT */
+      }
+
+      /* 10 UNIQUE FLOATING PATHS - criss-cross screen */
+      .float-img:nth-child(1) { animation: orbit1 28s infinite ease-in-out; }
+      .float-img:nth-child(2) { animation: orbit2 32s infinite ease-in-out; }
+      .float-img:nth-child(3) { animation: orbit3 26s infinite ease-in-out; }
+      .float-img:nth-child(4) { animation: orbit4 30s infinite ease-in-out; }
+      .float-img:nth-child(5) { animation: orbit5 27s infinite ease-in-out; }
+      .float-img:nth-child(6) { animation: orbit6 29s infinite ease-in-out; }
+      .float-img:nth-child(7) { animation: orbit7 31s infinite ease-in-out; }
+      .float-img:nth-child(8) { animation: orbit8 25s infinite ease-in-out; }
+      .float-img:nth-child(9) { animation: orbit9 33s infinite ease-in-out; }
+      .float-img:nth-child(10) { animation: orbit10 24s infinite ease-in-out; }
+
+      /* 10 varied free-floating paths - NO OPACITY CHANGES */
+      @keyframes orbit1 {
+        0% { top: 90vh; left: 5%; transform: scale(0.8) rotate(0deg); }
+        33% { top: 20vh; left: 15%; transform: scale(1.1) rotate(90deg); }
+        66% { top: 40vh; left: 70%; transform: scale(0.9) rotate(180deg); }
+        100% { top: 10vh; left: 90%; transform: scale(1.2) rotate(360deg); }
+      }
+
+      @keyframes orbit2 {
+        0% { top: 100vh; left: 20%; transform: scale(0.9) rotate(0deg); }
+        40% { top: 30vh; left: 80%; transform: scale(1.0) rotate(120deg); }
+        70% { top: 60vh; left: 10%; transform: scale(1.1) rotate(240deg); }
+        100% { top: 20vh; left: 50%; transform: scale(0.8) rotate(360deg); }
+      }
+
+      @keyframes orbit3 {
+        0% { top: 80vh; left: 40%; transform: scale(0.8) rotate(0deg); }
+        35% { top: 10vh; left: 60%; transform: scale(1.2) rotate(60deg); }
+        65% { top: 70vh; left: 20%; transform: scale(1.0) rotate(200deg); }
+        100% { top: 30vh; left: 85%; transform: scale(0.9) rotate(340deg); }
+      }
+
+      @keyframes orbit4 {
+        0% { top: 95vh; left: 65%; transform: scale(1.0) rotate(0deg); }
+        45% { top: 50vh; left: 5%; transform: scale(0.9) rotate(150deg); }
+        80% { top: 15vh; left: 75%; transform: scale(1.1) rotate(300deg); }
+        100% { top: 80vh; left: 30%; transform: scale(1.2) rotate(360deg); }
+      }
+
+      @keyframes orbit5 {
+        0% { top: 110vh; left: 85%; transform: scale(0.7) rotate(0deg); }
+        30% { top: 40vh; left: 90%; transform: scale(1.1) rotate(45deg); }
+        60% { top: 20vh; left: 25%; transform: scale(1.0) rotate(180deg); }
+        100% { top: 60vh; left: 60%; transform: scale(0.8) rotate(360deg); }
+      }
+
+      @keyframes orbit6 {
+        0% { top: 85vh; left: 15%; transform: scale(0.9) rotate(0deg); }
+        50% { top: 25vh; left: 45%; transform: scale(1.2) rotate(270deg); }
+        90% { top: 55vh; left: 80%; transform: scale(0.9) rotate(350deg); }
+        100% { top: 90vh; left: 10%; transform: scale(1.0) rotate(360deg); }
+      }
+
+      @keyframes orbit7 {
+        0% { top: 105vh; left: 75%; transform: scale(0.8) rotate(0deg); }
+        40% { top: 60vh; left: 30%; transform: scale(1.1) rotate(100deg); }
+        75% { top: 10vh; left: 85%; transform: scale(1.0) rotate(250deg); }
+        100% { top: 70vh; left: 50%; transform: scale(1.2) rotate(360deg); }
+      }
+
+      @keyframes orbit8 {
+        0% { top: 92vh; left: 35%; transform: scale(1.0) rotate(0deg); }
+        35% { top: 15vh; left: 70%; transform: scale(0.9) rotate(80deg); }
+        70% { top: 45vh; left: 15%; transform: scale(1.2) rotate(220deg); }
+        100% { top: 25vh; left: 90%; transform: scale(1.1) rotate(360deg); }
+      }
+
+      @keyframes orbit9 {
+        0% { top: 88vh; left: 25%; transform: scale(0.9) rotate(0deg); }
+        30% { top: 35vh; left: 85%; transform: scale(1.1) rotate(135deg); }
+        65% { top: 65vh; left: 40%; transform: scale(1.0) rotate(225deg); }
+        100% { top: 15vh; left: 75%; transform: scale(1.2) rotate(360deg); }
+      }
+
+      @keyframes orbit10 {
+        0% { top: 98vh; left: 55%; transform: scale(0.8) rotate(0deg); }
+        25% { top: 20vh; left: 20%; transform: scale(1.2) rotate(315deg); }
+        60% { top: 50vh; left: 90%; transform: scale(0.9) rotate(90deg); }
+        100% { top: 75vh; left: 35%; transform: scale(1.1) rotate(360deg); }
+      }
+
+      /* 20 FAST HEARTS */
+      .heart {
+        position: fixed;
+        font-size: 22px;
+        color: #ff69b4;
+        z-index: 2;
+        pointer-events: none;
+        animation: floatHeart 12s infinite linear;
+      }
+
+      /* 20 hearts (nth-child 11-30 after 10 images) */
+      .heart:nth-child(11) { left: 5%; animation-delay: 0s; }
+      .heart:nth-child(12) { left: 12%; animation-delay: -1s; }
+      .heart:nth-child(13) { left: 20%; animation-delay: -2s; }
+      .heart:nth-child(14) { left: 28%; animation-delay: -3s; }
+      .heart:nth-child(15) { left: 35%; animation-delay: -4s; }
+      .heart:nth-child(16) { left: 45%; animation-delay: -5s; }
+      .heart:nth-child(17) { left: 55%; animation-delay: -6s; }
+      .heart:nth-child(18) { left: 65%; animation-delay: -7s; }
+      .heart:nth-child(19) { left: 72%; animation-delay: -8s; }
+      .heart:nth-child(20) { left: 80%; animation-delay: -9s; }
+      .heart:nth-child(21) { left: 88%; animation-delay: -10s; font-size: 26px; }
+      .heart:nth-child(22) { left: 95%; animation-delay: -11s; font-size: 18px; }
+      .heart:nth-child(23) { left: 10%; animation-delay: -0.5s; }
+      .heart:nth-child(24) { left: 25%; animation-delay: -1.5s; }
+      .heart:nth-child(25) { left: 50%; animation-delay: -2.5s; font-size: 28px; }
+      .heart:nth-child(26) { left: 70%; animation-delay: -3.5s; }
+      .heart:nth-child(27) { left: 90%; animation-delay: -4.5s; }
+      .heart:nth-child(28) { left: 15%; animation-delay: -5.5s; font-size: 20px; }
+      .heart:nth-child(29) { left: 40%; animation-delay: -6.5s; }
+      .heart:nth-child(30) { left: 82%; animation-delay: -7.5s; font-size: 24px; }
+
+      @keyframes floatHeart {
+        0% { top: 100vh; opacity: 0; transform: scale(0) rotate(0deg) translateY(0); }
+        8% { opacity: 1; transform: scale(1) rotate(0deg) translateY(-10px); }
+        85% { opacity: 1; transform: scale(1.3) rotate(180deg) translateY(-20px); }
+        100% { top: -20vh; opacity: 0; transform: scale(0.3) rotate(360deg) translateY(-30px); }
+      }
+
+      .card {
+        background: rgba(255, 255, 255, 0.95);
+        padding: 50px 30px 70px;
+        border-radius: 25px;
+        text-align: center;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        width: 100%;
+        max-width: 420px;
+        position: relative;
+        z-index: 10;
+        backdrop-filter: blur(10px);
+      }
+
+      h1 {
+        color: #ff4d6d;
+        margin-bottom: 10px;
+        font-size: 2rem;
+      }
+
+      p {
+        color: #555;
+        margin-bottom: 25px;
+        font-size: 1.2rem;
+      }
+
+      .buttons {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+      }
+
+      button {
+        padding: 15px 25px;
+        font-size: 18px;
+        border: none;
+        border-radius: 25px;
+        cursor: pointer;
+        transition: 0.3s ease;
+      }
+
+      #yesBtn {
+        background: #ff4d6d;
+        color: white;
+      }
+
+      #noBtn {
+        background: #ccc;
+        color: #333;
+        position: relative;
+        user-select: none;
+      }
+
+      .shy-text {
+        margin-top: 18px;
+        font-size: 14px;
+        color: #ff4d6d;
+      }
+
+      .video-gif {
+        width: 100%;
+        max-width: 280px;
+        margin: 20px auto 0;
+        border-radius: 15px;
+        display: block;
+      }
+
+      @media (max-width: 480px) {
+        body { padding: 10px; }
+        .float-img { max-width: 100px !important; max-height: 140px !important; }
+        .heart { font-size: 18px; }
+        .card { padding: 35px 20px 55px; max-width: 380px; margin: 10px; }
+        h1 { font-size: 1.6rem; }
+        button { padding: 12px 20px; font-size: 16px; }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- 10 BRIGHT FLOATING IMAGES (reusing 1-5.png twice) -->
+    <img src="1.png" class="float-img" alt="Photo 1">
+    <img src="2.png" class="float-img" alt="Photo 2">
+    <img src="3.png" class="float-img" alt="Photo 3">
+    <img src="4.png" class="float-img" alt="Photo 4">
+    <img src="5.png" class="float-img" alt="Photo 5">
+    <img src="1.png" class="float-img" alt="Photo 1">
+    <img src="2.png" class="float-img" alt="Photo 2">
+    <img src="3.png" class="float-img" alt="Photo 3">
+    <img src="4.png" class="float-img" alt="Photo 4">
+    <img src="5.png" class="float-img" alt="Photo 5">
+
+    <!-- 20 FAST HEARTS -->
+    <div class="heart">💖</div><div class="heart">💕</div><div class="heart">💗</div>
+    <div class="heart">💖</div><div class="heart">💕</div><div class="heart">💗</div>
+    <div class="heart">💖</div><div class="heart">💕</div><div class="heart">💝</div>
+    <div class="heart">💖</div><div class="heart">💕</div><div class="heart">💗</div>
+    <div class="heart">💖</div><div class="heart">💕</div><div class="heart">💗</div>
+    <div class="heart">💖</div><div class="heart">💕</div><div class="heart">💗</div>
+    <div class="heart">💖</div><div class="heart">💕</div><div class="heart">💝</div>
+    <div class="heart">💖</div>
+
+    <audio id="noSound" preload="auto">
+      <source src="https://www.myinstants.com/media/sounds/windows-error.mp3" type="audio/mpeg" />
+    </audio>
+
+    <audio id="yesSound" preload="auto">
+      <source src="https://www.myinstants.com/media/sounds/tadaa.mp3" type="audio/mpeg" />
+    </audio>
+
+    <div class="card" id="card">
+      <h1>Hi Chakanthallilu 🥰</h1>
+      <p>Will you be my Valentine?</p>
+      <div class="buttons">
+        <button id="yesBtn">💖 Yes 💖</button>
+        <button id="noBtn">🙈 No 🙈</button>
+      </div>
+      <div class="shy-text">"No" seems a bit shy 😈</div>
+    </div>
+
+    <script>
+      const noBtn = document.getElementById("noBtn");
+      const card = document.getElementById("card");
+      const noSound = document.getElementById("noSound");
+      const yesSound = document.getElementById("yesSound");
+      const yesBtn = document.getElementById("yesBtn");
+
+      function moveNoButton() {
+        noSound.currentTime = 0;
+        noSound.play().catch(() => {});
+        const cardRect = card.getBoundingClientRect();
+        const btnRect = noBtn.getBoundingClientRect();
+        const padding = 20;
+        const maxX = cardRect.width - btnRect.width - padding;
+        const maxY = cardRect.height - btnRect.height - padding;
+        const x = Math.random() * maxX;
+        const y = Math.random() * maxY;
+        noBtn.style.position = "absolute";
+        noBtn.style.left = x + "px";
+        noBtn.style.top = y + "px";
+      }
+
+      noBtn.addEventListener("pointerenter", (e) => {
+        if (e.pointerType === "mouse") moveNoButton();
+      });
+
+      noBtn.addEventListener("pointerdown", (e) => {
+        if (e.pointerType === "touch") {
+          e.preventDefault();
+          moveNoButton();
+        }
+      });
+
+      yesBtn.addEventListener("click", () => {
+        yesSound.currentTime = 0;
+        yesSound.play().catch(() => {});
+        card.innerHTML = `
+          <h1>YAYYYY 🎉</h1>
+          <p>You just made my day 🥰</p>
+          <video class="video-gif" poster="image.jpg" autoplay loop muted playsinline>
+            <source src="Video.mp4" type="video/mp4">
+          </video>
+        `;
+      });
+    </script>
+  </body>
 </html>
