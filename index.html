@@ -23,7 +23,7 @@
         cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='%23ff69b4' d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E"), pointer;
       }
 
-      /* FIXED: Natural image sizes + visible animation */
+      /* Main floating photos - upward balloon style */
       .floating-img {
         position: fixed;
         width: auto !important;
@@ -38,13 +38,34 @@
         pointer-events: none;
       }
 
-      /* 5 different paths - UPWARD float like balloons */
+      /* Original 5 upward floaters */
       .floating-img:nth-child(1) { left: 10%; animation: floatUp1 30s infinite linear; }
       .floating-img:nth-child(2) { left: 28%; animation: floatUp2 35s infinite linear; }
       .floating-img:nth-child(3) { left: 55%; animation: floatUp3 28s infinite linear; }
       .floating-img:nth-child(4) { left: 78%; animation: floatUp4 32s infinite linear; }
       .floating-img:nth-child(5) { left: 92%; animation: floatUp5 38s infinite linear; }
 
+      /* Reused images for side/bottom - gentle drifts */
+      .side-img {
+        position: fixed;
+        width: auto !important;
+        height: auto !important;
+        max-width: 180px !important;
+        max-height: 260px !important;
+        object-fit: contain;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(255, 105, 180, 0.6);
+        border: 3px solid rgba(255, 255, 255, 0.5);
+        z-index: 1;
+        pointer-events: none;
+        animation: driftAround 25s infinite ease-in-out;
+      }
+
+      .side-img:nth-child(6) { left: 5%; top: 60%; animation-delay: -5s; }
+      .side-img:nth-child(7) { right: 8%; top: 70%; animation-delay: -10s; animation-direction: reverse; }
+      .side-img:nth-child(8) { left: 75%; top: 75%; animation-delay: -15s; }
+
+      /* Upward balloon animations */
       @keyframes floatUp1 {
         0% { top: 90vh; opacity: 0; transform: scale(0.8) rotate(0deg); }
         5% { opacity: 1; }
@@ -78,6 +99,41 @@
         10% { opacity: 1; }
         90% { opacity: 1; }
         100% { top: -12vh; transform: scale(1.1) rotate(340deg); opacity: 0; }
+      }
+
+      /* Drift animation for side images */
+      @keyframes driftAround {
+        0% { transform: translate(0, 0) rotate(0deg) scale(1); opacity: 0.8; }
+        25% { transform: translate(30px, -20px) rotate(10deg) scale(1.05); opacity: 1; }
+        50% { transform: translate(-15px, 10px) rotate(-5deg) scale(0.95); opacity: 0.9; }
+        75% { transform: translate(20px, 15px) rotate(8deg) scale(1.1); opacity: 1; }
+        100% { transform: translate(0, 0) rotate(0deg) scale(1); opacity: 0.8; }
+      }
+
+      /* Romantic floating hearts */
+      .heart {
+        position: fixed;
+        font-size: 24px;
+        color: #ff69b4;
+        z-index: 2;
+        pointer-events: none;
+        animation: floatHeart 20s infinite linear;
+      }
+
+      .heart:nth-child(9) { left: 10%; animation-delay: 0s; }
+      .heart:nth-child(10) { left: 25%; animation-delay: -3s; }
+      .heart:nth-child(11) { left: 40%; animation-delay: -6s; }
+      .heart:nth-child(12) { left: 60%; animation-delay: -9s; }
+      .heart:nth-child(13) { left: 75%; animation-delay: -12s; }
+      .heart:nth-child(14) { left: 90%; animation-delay: -15s; }
+      .heart:nth-child(15) { left: 15%; animation-delay: -4s; font-size: 20px; }
+      .heart:nth-child(16) { left: 80%; animation-delay: -7s; font-size: 28px; }
+
+      @keyframes floatHeart {
+        0% { top: 100vh; opacity: 0; transform: scale(0) rotate(0deg); }
+        10% { opacity: 1; transform: scale(1) rotate(0deg); }
+        90% { opacity: 1; transform: scale(1.2) rotate(180deg); }
+        100% { top: -10vh; opacity: 0; transform: scale(0.5) rotate(360deg); }
       }
 
       .card {
@@ -148,7 +204,8 @@
 
       @media (max-width: 480px) {
         body { padding: 10px; }
-        .floating-img { max-width: 100px !important; max-height: 140px !important; }
+        .floating-img, .side-img { max-width: 100px !important; max-height: 140px !important; }
+        .heart { font-size: 20px; }
         .card { padding: 35px 20px 55px; max-width: 380px; margin: 10px; }
         h1 { font-size: 1.6rem; }
         button { padding: 12px 20px; font-size: 16px; }
@@ -157,12 +214,27 @@
   </head>
 
   <body>
-    <!-- YOUR 5 IMAGES - WILL SHOW IMMEDIATELY -->
+    <!-- 5 upward floating photos (1-5) -->
     <img src="1.png" class="floating-img" alt="Photo 1">
     <img src="2.png" class="floating-img" alt="Photo 2">
     <img src="3.png" class="floating-img" alt="Photo 3">
     <img src="4.png" class="floating-img" alt="Photo 4">
     <img src="5.png" class="floating-img" alt="Photo 5">
+
+    <!-- 3 side/bottom drifters (reuse 2, 4, 1) -->
+    <img src="2.png" class="side-img" alt="Photo 2">
+    <img src="4.png" class="side-img" alt="Photo 4">
+    <img src="1.png" class="side-img" alt="Photo 1">
+
+    <!-- Floating hearts -->
+    <div class="heart">💖</div>
+    <div class="heart">💕</div>
+    <div class="heart">💗</div>
+    <div class="heart">💖</div>
+    <div class="heart">💕</div>
+    <div class="heart">💗</div>
+    <div class="heart">💖</div>
+    <div class="heart">💕</div>
 
     <audio id="noSound" preload="auto">
       <source src="https://www.myinstants.com/media/sounds/windows-error.mp3" type="audio/mpeg" />
